@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/euquero.cafe/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/euquero.cafe/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/euquero.cafe",
+  "projects": {
+    "euquero.cafe": {
+      "type": "application",
+      "root": "apps/euquero.cafe",
+      "entryFile": "main",
+      "sourceRoot": "apps/euquero.cafe/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/euquero.cafe/tsconfig.app.json"
+      }
+    },
+    "recibos": {
+      "type": "application",
+      "root": "apps/recibos",
+      "entryFile": "main",
+      "sourceRoot": "apps/recibos/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/recibos/tsconfig.app.json"
+      }
+    },
+    "aws": {
+      "type": "library",
+      "root": "libs/aws",
+      "entryFile": "index",
+      "sourceRoot": "libs/aws/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/aws/tsconfig.lib.json"
+      }
+    }
+  }
+}
