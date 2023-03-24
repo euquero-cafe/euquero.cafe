@@ -32,11 +32,15 @@ export class RecibosService {
     const currencies = nlp.entities
       .filter(each => each.entity === "currency" && each.resolution.value > 0)
       .sort((a, b) => b.resolution.value - a.resolution.value)
-      .map(each => ({
-        text: each.sourceText,
-        value: each.resolution.value * 100,
-        currency: each.resolution.unit
-      }));
+      .map(each => {
+        // there's a bug on nlp.js when numbers have dots it considers as decimal separator
+        const value = parseFloat((each.resolution.value * 100).toFixed(2));
+        return ({
+          text: each.sourceText,
+          currency: each.resolution.unit,
+          value: value
+        });
+      });
 
     return { text, total: currencies[0] };
   }
